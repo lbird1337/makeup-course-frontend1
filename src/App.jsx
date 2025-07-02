@@ -13,7 +13,6 @@ import YooKassaWidget from './components/YooKassaWidget.jsx';
 import { createPayment } from './api/payment.js';
 import PaymentModal from './components/PaymentModal.jsx';
 import Portfolio from './components/Portfolio.jsx';
-
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [confirmationToken, setConfirmationToken] = useState('');
