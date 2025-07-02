@@ -24,6 +24,8 @@ export default {
       fontFamily: {
         heading: ['"Cormorant Garamond"', 'serif'],
         body: ['"PT Serif"', 'serif'],
+        hero: ['"Playfair Display"', 'serif'],
+        subtitle: ['"Open Sans"', 'sans-serif'],
       },
     },
   },
