@@ -1,22 +1,35 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
-    branches: [main]
+    branches: [ "main" ]  # Триггер на пуши в main ветку
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Даем разрешение на запись для создания gh-pages ветки
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - run: npm ci
-      - run: npm run build
-      - uses: peaceiris/actions-gh-pages@v4
+          node-version: '20'  # Используем LTS версию Node.js
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          publish_branch: gh-pages
-          force_orphan: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+          publish_branch: gh-pages  # Специальная ветка для GitHub Pages
+          force_orphan: true  # Каждый раз чистим ветку перед деплоем
+          cname: makeup-course-frontend1.vercel.app  # Если используете кастомный домен (удалите если нет)
