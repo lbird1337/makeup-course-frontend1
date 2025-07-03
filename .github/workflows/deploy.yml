@@ -2,13 +2,13 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]  # Триггер на пуши в main ветку
+    branches: ["main"]  # Триггер на пуши в main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Даем разрешение на запись для создания gh-pages ветки
+      contents: write  # Права на создание ветки
 
     steps:
       - name: Checkout code
@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Используем LTS версию Node.js
+          node-version: "20"
 
       - name: Install dependencies
         run: npm ci
@@ -29,7 +29,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages  # Специальная ветка для GitHub Pages
-          force_orphan: true  # Каждый раз чистим ветку перед деплоем
-          
+          publish_dir: ./dist  # Путь к папке сборки
+          publish_branch: gh-pages  # Ветка для GitHub Pages
+          force_orphan: true  # Перезаписываем ветку полностью
