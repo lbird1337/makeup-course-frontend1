@@ -32,4 +32,4 @@ jobs:
           publish_dir: ./dist
           publish_branch: gh-pages  # Специальная ветка для GitHub Pages
           force_orphan: true  # Каждый раз чистим ветку перед деплоем
-          cname: makeup-course-frontend1.vercel.app  # Если используете кастомный домен (удалите если нет)
+          
